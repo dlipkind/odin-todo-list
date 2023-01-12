@@ -18,28 +18,31 @@ projectForm.addEventListener("submit", (e) => {
 todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const formFields = e.target;
-  addTodo(formFields, arrProjects);
+  addTodo(formFields, arrProjects, currentProject);
 });
 
 function addProject() {
   const titleValue = document.getElementById("pr_title").value;
   const newProject = new ProjectConstruct(titleValue);
-  console.log(newProject);
   arrProjects.push(newProject);
-  console.log(arrProjects);
 }
 
-function addTodo(formFields, arrProjects) {
+function addTodo(formFields, arrProjects, currentProject) {
   const myFormData = new FormData(formFields);
   const formDataObj = {};
   myFormData.forEach((value, key) => (formDataObj[key] = value));
   formDataObj.project = currentProject;
+
+  arrProjects.forEach((project) => {
+    if (project.name === currentProject) {
+      project.toDos.push(formDataObj);
+    }
+  });
+
+  listCurrentToDos(currentProject);
+
   console.log(formDataObj);
   console.log(arrProjects);
-  console.log(arrProjects.currentProject.toDos);
-
-  arrProjects.currentProject.toDos.push(formDataObj);
-  console.log(formDataObj);
 }
 
 function updProjectList() {
@@ -65,6 +68,19 @@ function selectCurrentProject(projectTitle) {
 
 function listCurrentToDos(projectTitle) {
   currentProject = projectTitle;
-  console.log(currentProject);
-  return currentProject;
+  const todoList = document.querySelector(".tasks");
+  todoList.textContent = "";
+
+  arrProjects.forEach((project) => {
+    if (project.name === currentProject) {
+      project.toDos.forEach((todo) => {
+        const div = document.createElement("div");
+        div.textContent = todo.title;
+        div.addEventListener("click", () => {
+          // expandTodo();
+        });
+        todoList.appendChild(div);
+      });
+    }
+  });
 }
