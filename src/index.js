@@ -13,6 +13,7 @@ projectForm.addEventListener("submit", (e) => {
   e.preventDefault();
   addProject(arrProjects, currentProject, ProjectConstruct);
   updProjectList(arrProjects);
+  selectCurrentProject(newProject); /// проверить работает ли
 });
 
 todoForm.addEventListener("submit", (e) => {
@@ -25,6 +26,7 @@ function addProject() {
   const titleValue = document.getElementById("pr_title").value;
   const newProject = new ProjectConstruct(titleValue);
   arrProjects.push(newProject);
+  return newProject;
 }
 
 function addTodo(formFields, arrProjects, currentProject) {
@@ -39,7 +41,7 @@ function addTodo(formFields, arrProjects, currentProject) {
     }
   });
 
-  listCurrentToDos(currentProject);
+  listCurrentToDos(currentProject); /// Перенести это в функцию, которая вызывает весь процесс
 
   console.log(formDataObj);
   console.log(arrProjects);
