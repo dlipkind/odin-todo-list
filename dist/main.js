@@ -1,2 +1,392 @@
-(()=>{"use strict";console.log("Hello classes here");class e{constructor(e){this.name=e,this.toDos=[]}}console.log("TEST: Hello index js here");let t,n=[];const o=document.getElementById("form_pr"),c=document.getElementById("form_td");function s(e){return t=e,console.log(t),t}function l(e){t=e;const o=document.querySelector(".tasks");o.textContent="",n.forEach((e=>{e.name===t&&e.toDos.forEach((e=>{const t=document.createElement("div");t.textContent=e.title,t.addEventListener("click",(()=>{})),o.appendChild(t)}))}))}o.addEventListener("submit",(t=>{t.preventDefault(),function(){const t=document.getElementById("pr_title").value,o=new e(t);n.push(o)}(),function(){const e=document.querySelector(".projects");e.textContent="",n.forEach((t=>{const n=document.createElement("div");n.textContent=t.name,n.addEventListener("click",(()=>{s(t.name),l(t.name)})),e.appendChild(n)}))}(),s(newProject)})),c.addEventListener("submit",(e=>{e.preventDefault(),function(e,t,n){const o=new FormData(e),c={};o.forEach(((e,t)=>c[t]=e)),c.project=n,t.forEach((e=>{e.name===n&&e.toDos.push(c)})),l(n),console.log(c),console.log(t)}(e.target,n,t)}))})(),console.log("Hello dom here");
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsIm1hcHBpbmdzIjoibUJBQUFBLFFBQVFDLElBQUksc0JBRUwsTUFBTUMsRUFDWEMsWUFBWUMsR0FDVkMsS0FBS0QsS0FBT0EsRUFDWkMsS0FBS0MsTUFBUSxFQUNmLEVDSkZOLFFBQVFDLElBQUksNkJBRVosSUFFSU0sRUFGQUMsRUFBYyxHQUlsQixNQUFNQyxFQUFjQyxTQUFTQyxlQUFlLFdBQ3RDQyxFQUFXRixTQUFTQyxlQUFlLFdBdUR6QyxTQUFTRSxFQUFxQkMsR0FHNUIsT0FGQVAsRUFBaUJPLEVBQ2pCZCxRQUFRQyxJQUFJTSxHQUNMQSxDQUNULENBRUEsU0FBU1EsRUFBaUJELEdBQ3hCUCxFQUFpQk8sRUFDakIsTUFBTUUsRUFBV04sU0FBU08sY0FBYyxVQUN4Q0QsRUFBU0UsWUFBYyxHQUV2QlYsRUFBWVcsU0FBU0MsSUFDZkEsRUFBUWhCLE9BQVNHLEdBQ25CYSxFQUFRZCxNQUFNYSxTQUFTRSxJQUNyQixNQUFNQyxFQUFNWixTQUFTYSxjQUFjLE9BQ25DRCxFQUFJSixZQUFjRyxFQUFLRyxNQUN2QkYsRUFBSUcsaUJBQWlCLFNBQVMsU0FHOUJULEVBQVNVLFlBQVlKLEVBQUksR0FFN0IsR0FFSixDQTVFQWIsRUFBWWdCLGlCQUFpQixVQUFXRSxJQUN0Q0EsRUFBRUMsaUJBWUosV0FDRSxNQUFNQyxFQUFhbkIsU0FBU0MsZUFBZSxZQUFZbUIsTUFDakRDLEVBQWEsSUFBSTdCLEVBQWlCMkIsR0FDeENyQixFQUFZd0IsS0FBS0QsRUFFbkIsQ0FoQkVFLEdBb0NGLFdBQ0UsTUFBTUMsRUFBY3hCLFNBQVNPLGNBQWMsYUFDM0NpQixFQUFZaEIsWUFBYyxHQUUxQlYsRUFBWVcsU0FBU0MsSUFDbkIsTUFBTUUsRUFBTVosU0FBU2EsY0FBYyxPQUNuQ0QsRUFBSUosWUFBY0UsRUFBUWhCLEtBQzFCa0IsRUFBSUcsaUJBQWlCLFNBQVMsS0FDNUJaLEVBQXFCTyxFQUFRaEIsTUFDN0JXLEVBQWlCSyxFQUFRaEIsS0FBSyxJQUVoQzhCLEVBQVlSLFlBQVlKLEVBQUksR0FFaEMsQ0FoREVhLEdBQ0F0QixFQUFxQmtCLFdBQVcsSUFHbENuQixFQUFTYSxpQkFBaUIsVUFBV0UsSUFDbkNBLEVBQUVDLGlCQVlKLFNBQWlCUSxFQUFZNUIsRUFBYUQsR0FDeEMsTUFBTThCLEVBQWEsSUFBSUMsU0FBU0YsR0FDMUJHLEVBQWMsQ0FBQyxFQUNyQkYsRUFBV2xCLFNBQVEsQ0FBQ1csRUFBT1UsSUFBU0QsRUFBWUMsR0FBT1YsSUFDdkRTLEVBQVluQixRQUFVYixFQUV0QkMsRUFBWVcsU0FBU0MsSUFDZkEsRUFBUWhCLE9BQVNHLEdBQ25CYSxFQUFRZCxNQUFNMEIsS0FBS08sRUFDckIsSUFHRnhCLEVBQWlCUixHQUVqQlAsUUFBUUMsSUFBSXNDLEdBQ1p2QyxRQUFRQyxJQUFJTyxFQUNkLENBMUJFaUMsQ0FEbUJkLEVBQUVlLE9BQ0RsQyxFQUFhRCxFQUFlLEcsS0NyQmxEUCxRQUFRQyxJQUFJIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vanMtdG9kby1saXN0Ly4vc3JjL2NsYXNzZXMuanMiLCJ3ZWJwYWNrOi8vanMtdG9kby1saXN0Ly4vc3JjL2luZGV4LmpzIiwid2VicGFjazovL2pzLXRvZG8tbGlzdC8uL3NyYy9kb20uanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc29sZS5sb2coXCJIZWxsbyBjbGFzc2VzIGhlcmVcIik7XG5cbmV4cG9ydCBjbGFzcyBQcm9qZWN0Q29uc3RydWN0IHtcbiAgY29uc3RydWN0b3IobmFtZSkge1xuICAgIHRoaXMubmFtZSA9IG5hbWU7XG4gICAgdGhpcy50b0RvcyA9IFtdO1xuICB9XG59XG4iLCJpbXBvcnQgeyBQcm9qZWN0Q29uc3RydWN0IH0gZnJvbSBcIi4vY2xhc3Nlcy5qc1wiO1xuXG5jb25zb2xlLmxvZyhcIlRFU1Q6IEhlbGxvIGluZGV4IGpzIGhlcmVcIik7XG5cbmxldCBhcnJQcm9qZWN0cyA9IFtdO1xuXG5sZXQgY3VycmVudFByb2plY3QgPSB1bmRlZmluZWQ7XG5cbmNvbnN0IHByb2plY3RGb3JtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJmb3JtX3ByXCIpO1xuY29uc3QgdG9kb0Zvcm0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImZvcm1fdGRcIik7XG5cbnByb2plY3RGb3JtLmFkZEV2ZW50TGlzdGVuZXIoXCJzdWJtaXRcIiwgKGUpID0+IHtcbiAgZS5wcmV2ZW50RGVmYXVsdCgpO1xuICBhZGRQcm9qZWN0KGFyclByb2plY3RzLCBjdXJyZW50UHJvamVjdCwgUHJvamVjdENvbnN0cnVjdCk7XG4gIHVwZFByb2plY3RMaXN0KGFyclByb2plY3RzKTtcbiAgc2VsZWN0Q3VycmVudFByb2plY3QobmV3UHJvamVjdCk7IC8vLyDQv9GA0L7QstC10YDQuNGC0Ywg0YDQsNCx0L7RgtCw0LXRgiDQu9C4XG59KTtcblxudG9kb0Zvcm0uYWRkRXZlbnRMaXN0ZW5lcihcInN1Ym1pdFwiLCAoZSkgPT4ge1xuICBlLnByZXZlbnREZWZhdWx0KCk7XG4gIGNvbnN0IGZvcm1GaWVsZHMgPSBlLnRhcmdldDtcbiAgYWRkVG9kbyhmb3JtRmllbGRzLCBhcnJQcm9qZWN0cywgY3VycmVudFByb2plY3QpO1xufSk7XG5cbmZ1bmN0aW9uIGFkZFByb2plY3QoKSB7XG4gIGNvbnN0IHRpdGxlVmFsdWUgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcInByX3RpdGxlXCIpLnZhbHVlO1xuICBjb25zdCBuZXdQcm9qZWN0ID0gbmV3IFByb2plY3RDb25zdHJ1Y3QodGl0bGVWYWx1ZSk7XG4gIGFyclByb2plY3RzLnB1c2gobmV3UHJvamVjdCk7XG4gIHJldHVybiBuZXdQcm9qZWN0O1xufVxuXG5mdW5jdGlvbiBhZGRUb2RvKGZvcm1GaWVsZHMsIGFyclByb2plY3RzLCBjdXJyZW50UHJvamVjdCkge1xuICBjb25zdCBteUZvcm1EYXRhID0gbmV3IEZvcm1EYXRhKGZvcm1GaWVsZHMpO1xuICBjb25zdCBmb3JtRGF0YU9iaiA9IHt9O1xuICBteUZvcm1EYXRhLmZvckVhY2goKHZhbHVlLCBrZXkpID0+IChmb3JtRGF0YU9ialtrZXldID0gdmFsdWUpKTtcbiAgZm9ybURhdGFPYmoucHJvamVjdCA9IGN1cnJlbnRQcm9qZWN0O1xuXG4gIGFyclByb2plY3RzLmZvckVhY2goKHByb2plY3QpID0+IHtcbiAgICBpZiAocHJvamVjdC5uYW1lID09PSBjdXJyZW50UHJvamVjdCkge1xuICAgICAgcHJvamVjdC50b0Rvcy5wdXNoKGZvcm1EYXRhT2JqKTtcbiAgICB9XG4gIH0pO1xuXG4gIGxpc3RDdXJyZW50VG9Eb3MoY3VycmVudFByb2plY3QpOyAvLy8g0J/QtdGA0LXQvdC10YHRgtC4INGN0YLQviDQsiDRhNGD0L3QutGG0LjRjiwg0LrQvtGC0L7RgNCw0Y8g0LLRi9C30YvQstCw0LXRgiDQstC10YHRjCDQv9GA0L7RhtC10YHRgVxuXG4gIGNvbnNvbGUubG9nKGZvcm1EYXRhT2JqKTtcbiAgY29uc29sZS5sb2coYXJyUHJvamVjdHMpO1xufVxuXG5mdW5jdGlvbiB1cGRQcm9qZWN0TGlzdCgpIHtcbiAgY29uc3QgcHJvamVjdExpc3QgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnByb2plY3RzXCIpO1xuICBwcm9qZWN0TGlzdC50ZXh0Q29udGVudCA9IFwiXCI7XG5cbiAgYXJyUHJvamVjdHMuZm9yRWFjaCgocHJvamVjdCkgPT4ge1xuICAgIGNvbnN0IGRpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgZGl2LnRleHRDb250ZW50ID0gcHJvamVjdC5uYW1lO1xuICAgIGRpdi5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKCkgPT4ge1xuICAgICAgc2VsZWN0Q3VycmVudFByb2plY3QocHJvamVjdC5uYW1lKTtcbiAgICAgIGxpc3RDdXJyZW50VG9Eb3MocHJvamVjdC5uYW1lKTtcbiAgICB9KTtcbiAgICBwcm9qZWN0TGlzdC5hcHBlbmRDaGlsZChkaXYpO1xuICB9KTtcbn1cblxuZnVuY3Rpb24gc2VsZWN0Q3VycmVudFByb2plY3QocHJvamVjdFRpdGxlKSB7XG4gIGN1cnJlbnRQcm9qZWN0ID0gcHJvamVjdFRpdGxlO1xuICBjb25zb2xlLmxvZyhjdXJyZW50UHJvamVjdCk7XG4gIHJldHVybiBjdXJyZW50UHJvamVjdDtcbn1cblxuZnVuY3Rpb24gbGlzdEN1cnJlbnRUb0Rvcyhwcm9qZWN0VGl0bGUpIHtcbiAgY3VycmVudFByb2plY3QgPSBwcm9qZWN0VGl0bGU7XG4gIGNvbnN0IHRvZG9MaXN0ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi50YXNrc1wiKTtcbiAgdG9kb0xpc3QudGV4dENvbnRlbnQgPSBcIlwiO1xuXG4gIGFyclByb2plY3RzLmZvckVhY2goKHByb2plY3QpID0+IHtcbiAgICBpZiAocHJvamVjdC5uYW1lID09PSBjdXJyZW50UHJvamVjdCkge1xuICAgICAgcHJvamVjdC50b0Rvcy5mb3JFYWNoKCh0b2RvKSA9PiB7XG4gICAgICAgIGNvbnN0IGRpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgICAgIGRpdi50ZXh0Q29udGVudCA9IHRvZG8udGl0bGU7XG4gICAgICAgIGRpdi5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKCkgPT4ge1xuICAgICAgICAgIC8vIGV4cGFuZFRvZG8oKTtcbiAgICAgICAgfSk7XG4gICAgICAgIHRvZG9MaXN0LmFwcGVuZENoaWxkKGRpdik7XG4gICAgICB9KTtcbiAgICB9XG4gIH0pO1xufVxuIiwiY29uc29sZS5sb2coXCJIZWxsbyBkb20gaGVyZVwiKTtcbiJdLCJuYW1lcyI6WyJjb25zb2xlIiwibG9nIiwiUHJvamVjdENvbnN0cnVjdCIsImNvbnN0cnVjdG9yIiwibmFtZSIsInRoaXMiLCJ0b0RvcyIsImN1cnJlbnRQcm9qZWN0IiwiYXJyUHJvamVjdHMiLCJwcm9qZWN0Rm9ybSIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJ0b2RvRm9ybSIsInNlbGVjdEN1cnJlbnRQcm9qZWN0IiwicHJvamVjdFRpdGxlIiwibGlzdEN1cnJlbnRUb0RvcyIsInRvZG9MaXN0IiwicXVlcnlTZWxlY3RvciIsInRleHRDb250ZW50IiwiZm9yRWFjaCIsInByb2plY3QiLCJ0b2RvIiwiZGl2IiwiY3JlYXRlRWxlbWVudCIsInRpdGxlIiwiYWRkRXZlbnRMaXN0ZW5lciIsImFwcGVuZENoaWxkIiwiZSIsInByZXZlbnREZWZhdWx0IiwidGl0bGVWYWx1ZSIsInZhbHVlIiwibmV3UHJvamVjdCIsInB1c2giLCJhZGRQcm9qZWN0IiwicHJvamVjdExpc3QiLCJ1cGRQcm9qZWN0TGlzdCIsImZvcm1GaWVsZHMiLCJteUZvcm1EYXRhIiwiRm9ybURhdGEiLCJmb3JtRGF0YU9iaiIsImtleSIsImFkZFRvZG8iLCJ0YXJnZXQiXSwic291cmNlUm9vdCI6IiJ9
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/modules/dom.js":
+/*!****************************!*\
+  !*** ./src/modules/dom.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DOM)
+/* harmony export */ });
+/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/modules/storage.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ "./src/modules/project.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo */ "./src/modules/todo.js");
+
+
+
+
+
+console.log("DOM here");
+
+class DOM {
+  static currentProject;
+
+  static selectProject(projectName) {
+    DOM.currentProject === projectName;
+  }
+
+  //EVENT LISTENERS
+
+  static projectFormSubmit() {
+    const projectForm = document.getElementById("form_pr");
+    projectForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      console.log("TEST!");
+      const projectName = document.getElementById("pr_title").value;
+      console.log(_todo__WEBPACK_IMPORTED_MODULE_3__["default"].addProject());
+      _todo__WEBPACK_IMPORTED_MODULE_3__["default"].addProject(new _project__WEBPACK_IMPORTED_MODULE_1__["default"](projectName));
+      DOM.addProject(projectName);
+      DOM.clearProjectPreview();
+      DOM.previewProjects();
+    });
+  }
+
+  static taskFormSubmit() {
+    const todoForm = document.getElementById("form_td");
+    todoForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const taskFormFields = e.target;
+      taskObjCompiler(taskFormFields, DOM.currentProject, _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects);
+    });
+  }
+
+  static taskObjCompiler(taskFormFields, currentProject, projectsArray) {
+    const myFormData = new FormData(taskFormFields);
+    const formDataObj = {};
+
+    myFormData.forEach((value, key) => (formDataObj[key] = value));
+    formDataObj.project = currentProject;
+
+    projectsArray.forEach((project) => {
+      project.name === currentProject ? project.toDos.push(formDataObj) : false;
+    });
+  }
+
+  //PROJECTS
+
+  static previewProjects() {
+    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects.forEach((project) => {
+      createProjectDivs(project.name);
+    });
+  }
+
+  static clearProjectPreview() {
+    const projectPreview = document.querySelector(".projects");
+    projectPreview.textContent = "";
+  }
+
+  static createProjectDivs(projectName) {
+    const projectPreview = document.querySelector(".projects");
+    const div = document.createElement("div");
+    div.textContent = projectName;
+    DOM.addListenersToProjects(div);
+    projectPreview.appendChild(div);
+  }
+
+  static addListenersToProjects(div) {
+    div.addEventListener("click", () => {
+      DOM.selectProject(projectName);
+      DOM.clearTaskPreview();
+      DOM.previewTasks(DOM.currentProject);
+    });
+  }
+
+  //TASKS
+
+  static previewTasks(currentProject) {
+    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects.forEach((project) => {
+      project.name === currentProject ? DOM.createTasksDivs : false;
+    });
+  }
+
+  static clearTaskPreview() {
+    const taskPreview = document.querySelector(".tasks");
+    taskPreview.textContent = "";
+  }
+
+  static createTasksDivs(currentProject) {
+    _project__WEBPACK_IMPORTED_MODULE_1__["default"].getTasks(currentProject).forEach((task) => {
+      const taskList = document.querySelector(".tasks");
+      const div = document.createElement("div");
+      div.textContent = task.title;
+      DOM.addListenersToTasks(div);
+      taskList.appendChild(div);
+    });
+  }
+
+  static addListenersToTasks(div) {
+    div.addEventListener("click", () => {
+      // expandTodo();
+    });
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/modules/project.js":
+/*!********************************!*\
+  !*** ./src/modules/project.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Project)
+/* harmony export */ });
+/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/modules/storage.js");
+/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo */ "./src/modules/todo.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ "./src/modules/dom.js");
+
+
+
+
+
+console.log("project here");
+
+class Project {
+  constructor(name) {
+    this.name = name;
+    this.tasks = [];
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  setTasks(tasks) {
+    this.tasks = tasks;
+  }
+
+  getTasks() {
+    return this.tasks;
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/modules/storage.js":
+/*!********************************!*\
+  !*** ./src/modules/storage.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./project */ "./src/modules/project.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ "./src/modules/todo.js");
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ "./src/modules/dom.js");
+
+
+
+
+
+console.log("storage here");
+
+// export default class Storage {
+//   static getTodoList() {
+//     const todoList = Object.assign(
+//       new TodoList(),
+//       JSON.parse(localStorage.getItem("todoList"))
+//     );
+
+//     todoList.setProjects(
+//       todoList
+//         .getProjects()
+//         .map((project) => Object.assign(new Project(), project))
+//     );
+
+//     todoList
+//       .getProjects()
+//       .forEach((project) =>
+//         project.setTasks(
+//           project.getTasks().map((task) => Object.assign(new Task(), task))
+//         )
+//       );
+
+//     return todoList;
+//   }
+
+//   static addProject(project) {
+//     const todoList = Storage.getTodoList();
+//     todoList.addProject(project);
+//     Storage.saveTodoList(todoList);
+//   }
+
+//   static addTask(projectName, task) {
+//     const todoList = Storage.getTodoList();
+//     todoList.getProject(projectName).addTask(task);
+//     Storage.saveTodoList(todoList);
+//   }
+// }
+
+
+/***/ }),
+
+/***/ "./src/modules/task.js":
+/*!*****************************!*\
+  !*** ./src/modules/task.js ***!
+  \*****************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./src/modules/todo.js":
+/*!*****************************!*\
+  !*** ./src/modules/todo.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Todo)
+/* harmony export */ });
+/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/modules/storage.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ "./src/modules/project.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ "./src/modules/dom.js");
+
+
+
+
+
+console.log("todo here");
+
+class Todo {
+  constructor() {
+    this.projects = [];
+  }
+
+  getProjects() {
+    return this.projects;
+  }
+
+  getProject(projectName) {
+    return this.projects.find((project) => project.getName() === projectName);
+  }
+
+  addProject(newProject) {
+    this.projects.push(newProject);
+  }
+
+  deleteProject(projectToDelete) {
+    this.projects.splice(this.projects.indexOf(projectToDelete), 1);
+  }
+}
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/storage */ "./src/modules/storage.js");
+/* harmony import */ var _modules_project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/project */ "./src/modules/project.js");
+/* harmony import */ var _modules_todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/todo */ "./src/modules/todo.js");
+/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/task */ "./src/modules/task.js");
+/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_task__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _modules_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/dom */ "./src/modules/dom.js");
+
+
+
+
+
+
+console.log("index js here");
+
+document.addEventListener("DOMContentLoaded", _modules_dom__WEBPACK_IMPORTED_MODULE_4__["default"].projectFormSubmit);
+
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=main.js.map
