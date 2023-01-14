@@ -11,15 +11,15 @@ export default class Project {
     this.tasks = [];
   }
 
-  getName() {
+  static getName() {
     return this.name;
   }
 
-  setTasks(tasks) {
+  static setTasks(tasks) {
     this.tasks = tasks;
   }
 
-  getTasks() {
+  static getTasks() {
     return this.tasks;
   }
 }

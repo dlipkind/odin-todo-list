@@ -6,23 +6,21 @@ import DOM from "./dom";
 console.log("todo here");
 
 export default class Todo {
-  constructor() {
-    this.projects = [];
+  static projectsArray = [];
+
+  static getProjects() {
+    return Todo.projectsArray;
   }
 
-  getProjects() {
-    return this.projects;
+  // static getProject(projectName) {
+  //   return this.projects.find((project) => project.getName() === projectName);
+  // }
+
+  static addProject(newProject) {
+    Todo.projectsArray.push(newProject);
   }
 
-  getProject(projectName) {
-    return this.projects.find((project) => project.getName() === projectName);
-  }
-
-  addProject(newProject) {
-    this.projects.push(newProject);
-  }
-
-  deleteProject(projectToDelete) {
-    this.projects.splice(this.projects.indexOf(projectToDelete), 1);
+  static deleteProject(projectToDelete) {
+    Todo.projectsArray.splice(Todo.projectsArray.indexOf(projectToDelete), 1);
   }
 }

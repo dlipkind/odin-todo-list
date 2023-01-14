@@ -39,9 +39,11 @@ class DOM {
       e.preventDefault();
       console.log("TEST!");
       const projectName = document.getElementById("pr_title").value;
-      console.log(_todo__WEBPACK_IMPORTED_MODULE_3__["default"].addProject());
-      _todo__WEBPACK_IMPORTED_MODULE_3__["default"].addProject(new _project__WEBPACK_IMPORTED_MODULE_1__["default"](projectName));
-      DOM.addProject(projectName);
+      const newProject = new _project__WEBPACK_IMPORTED_MODULE_1__["default"](projectName);
+      console.log(newProject);
+      _todo__WEBPACK_IMPORTED_MODULE_3__["default"].addProject(newProject);
+      console.log(_todo__WEBPACK_IMPORTED_MODULE_3__["default"].projectsArray);
+      console.log(_todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects());
       DOM.clearProjectPreview();
       DOM.previewProjects();
     });
@@ -52,7 +54,13 @@ class DOM {
     todoForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const taskFormFields = e.target;
-      taskObjCompiler(taskFormFields, DOM.currentProject, _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects);
+      console.log(taskFormFields);
+      DOM.taskObjCompiler(
+        taskFormFields,
+        DOM.currentProject,
+        _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects()
+      );
+      DOM.previewTasks(DOM.currentProject);
     });
   }
 
@@ -63,16 +71,18 @@ class DOM {
     myFormData.forEach((value, key) => (formDataObj[key] = value));
     formDataObj.project = currentProject;
 
+    console.log(formDataObj);
+
     projectsArray.forEach((project) => {
-      project.name === currentProject ? project.toDos.push(formDataObj) : false;
+      project.name === currentProject ? project.tasks.push(formDataObj) : false;
     });
   }
 
   //PROJECTS
 
   static previewProjects() {
-    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects.forEach((project) => {
-      createProjectDivs(project.name);
+    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects().forEach((project) => {
+      DOM.createProjectDivs(project.name);
     });
   }
 
@@ -85,11 +95,11 @@ class DOM {
     const projectPreview = document.querySelector(".projects");
     const div = document.createElement("div");
     div.textContent = projectName;
-    DOM.addListenersToProjects(div);
+    DOM.addListenersToProjects(div, projectName);
     projectPreview.appendChild(div);
   }
 
-  static addListenersToProjects(div) {
+  static addListenersToProjects(div, projectName) {
     div.addEventListener("click", () => {
       DOM.selectProject(projectName);
       DOM.clearTaskPreview();
@@ -100,7 +110,7 @@ class DOM {
   //TASKS
 
   static previewTasks(currentProject) {
-    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects.forEach((project) => {
+    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects().forEach((project) => {
       project.name === currentProject ? DOM.createTasksDivs : false;
     });
   }
@@ -159,15 +169,15 @@ class Project {
     this.tasks = [];
   }
 
-  getName() {
+  static getName() {
     return this.name;
   }
 
-  setTasks(tasks) {
+  static setTasks(tasks) {
     this.tasks = tasks;
   }
 
-  getTasks() {
+  static getTasks() {
     return this.tasks;
   }
 }
@@ -269,24 +279,22 @@ __webpack_require__.r(__webpack_exports__);
 console.log("todo here");
 
 class Todo {
-  constructor() {
-    this.projects = [];
+  static projectsArray = [];
+
+  static getProjects() {
+    return Todo.projectsArray;
   }
 
-  getProjects() {
-    return this.projects;
+  // static getProject(projectName) {
+  //   return this.projects.find((project) => project.getName() === projectName);
+  // }
+
+  static addProject(newProject) {
+    Todo.projectsArray.push(newProject);
   }
 
-  getProject(projectName) {
-    return this.projects.find((project) => project.getName() === projectName);
-  }
-
-  addProject(newProject) {
-    this.projects.push(newProject);
-  }
-
-  deleteProject(projectToDelete) {
-    this.projects.splice(this.projects.indexOf(projectToDelete), 1);
+  static deleteProject(projectToDelete) {
+    Todo.projectsArray.splice(Todo.projectsArray.indexOf(projectToDelete), 1);
   }
 }
 
@@ -383,7 +391,10 @@ __webpack_require__.r(__webpack_exports__);
 
 console.log("index js here");
 
-document.addEventListener("DOMContentLoaded", _modules_dom__WEBPACK_IMPORTED_MODULE_4__["default"].projectFormSubmit);
+console.log(typeof new _modules_project__WEBPACK_IMPORTED_MODULE_1__["default"]("Name"));
+
+_modules_dom__WEBPACK_IMPORTED_MODULE_4__["default"].projectFormSubmit();
+_modules_dom__WEBPACK_IMPORTED_MODULE_4__["default"].taskFormSubmit();
 
 })();
 

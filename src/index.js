@@ -6,4 +6,7 @@ import DOM from "./modules/dom";
 
 console.log("index js here");
 
-document.addEventListener("DOMContentLoaded", DOM.projectFormSubmit);
+console.log(typeof new Project("Name"));
+
+DOM.projectFormSubmit();
+DOM.taskFormSubmit();

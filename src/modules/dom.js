@@ -20,9 +20,11 @@ export default class DOM {
       e.preventDefault();
       console.log("TEST!");
       const projectName = document.getElementById("pr_title").value;
-      console.log(Todo.addProject());
-      Todo.addProject(new Project(projectName));
-      DOM.addProject(projectName);
+      const newProject = new Project(projectName);
+      console.log(newProject);
+      Todo.addProject(newProject);
+      console.log(Todo.projectsArray);
+      console.log(Todo.getProjects());
       DOM.clearProjectPreview();
       DOM.previewProjects();
     });
@@ -33,7 +35,13 @@ export default class DOM {
     todoForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const taskFormFields = e.target;
-      taskObjCompiler(taskFormFields, DOM.currentProject, Todo.getProjects);
+      console.log(taskFormFields);
+      DOM.taskObjCompiler(
+        taskFormFields,
+        DOM.currentProject,
+        Todo.getProjects()
+      );
+      DOM.previewTasks(DOM.currentProject);
     });
   }
 
@@ -44,16 +52,18 @@ export default class DOM {
     myFormData.forEach((value, key) => (formDataObj[key] = value));
     formDataObj.project = currentProject;
 
+    console.log(formDataObj);
+
     projectsArray.forEach((project) => {
-      project.name === currentProject ? project.toDos.push(formDataObj) : false;
+      project.name === currentProject ? project.tasks.push(formDataObj) : false;
     });
   }
 
   //PROJECTS
 
   static previewProjects() {
-    Todo.getProjects.forEach((project) => {
-      createProjectDivs(project.name);
+    Todo.getProjects().forEach((project) => {
+      DOM.createProjectDivs(project.name);
     });
   }
 
@@ -66,11 +76,11 @@ export default class DOM {
     const projectPreview = document.querySelector(".projects");
     const div = document.createElement("div");
     div.textContent = projectName;
-    DOM.addListenersToProjects(div);
+    DOM.addListenersToProjects(div, projectName);
     projectPreview.appendChild(div);
   }
 
-  static addListenersToProjects(div) {
+  static addListenersToProjects(div, projectName) {
     div.addEventListener("click", () => {
       DOM.selectProject(projectName);
       DOM.clearTaskPreview();
@@ -81,7 +91,7 @@ export default class DOM {
   //TASKS
 
   static previewTasks(currentProject) {
-    Todo.getProjects.forEach((project) => {
+    Todo.getProjects().forEach((project) => {
       project.name === currentProject ? DOM.createTasksDivs : false;
     });
   }
