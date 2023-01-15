@@ -6,25 +6,15 @@ import Todo from "./todo";
 console.log("DOM here");
 
 export default class DOM {
-  static currentProject;
-
-  static selectProject(projectName) {
-    DOM.currentProject === projectName;
-  }
-
   //EVENT LISTENERS
 
   static projectFormSubmit() {
     const projectForm = document.getElementById("form_pr");
     projectForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      console.log("TEST!");
       const projectName = document.getElementById("pr_title").value;
       const newProject = new Project(projectName);
-      console.log(newProject);
       Todo.addProject(newProject);
-      console.log(Todo.projectsArray);
-      console.log(Todo.getProjects());
       DOM.clearProjectPreview();
       DOM.previewProjects();
     });
@@ -35,13 +25,13 @@ export default class DOM {
     todoForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const taskFormFields = e.target;
-      console.log(taskFormFields);
       DOM.taskObjCompiler(
         taskFormFields,
-        DOM.currentProject,
+        Todo.currentProject,
         Todo.getProjects()
       );
-      DOM.previewTasks(DOM.currentProject);
+      DOM.clearTaskPreview();
+      DOM.previewTasks(Todo.currentProject);
     });
   }
 
@@ -51,8 +41,6 @@ export default class DOM {
 
     myFormData.forEach((value, key) => (formDataObj[key] = value));
     formDataObj.project = currentProject;
-
-    console.log(formDataObj);
 
     projectsArray.forEach((project) => {
       project.name === currentProject ? project.tasks.push(formDataObj) : false;
@@ -82,9 +70,9 @@ export default class DOM {
 
   static addListenersToProjects(div, projectName) {
     div.addEventListener("click", () => {
-      DOM.selectProject(projectName);
+      Todo.setCurrentProject(projectName);
       DOM.clearTaskPreview();
-      DOM.previewTasks(DOM.currentProject);
+      DOM.previewTasks(Todo.currentProject);
     });
   }
 
@@ -92,7 +80,7 @@ export default class DOM {
 
   static previewTasks(currentProject) {
     Todo.getProjects().forEach((project) => {
-      project.name === currentProject ? DOM.createTasksDivs : false;
+      project.name === currentProject ? DOM.createTasksDivs(project) : false;
     });
   }
 
@@ -101,8 +89,9 @@ export default class DOM {
     taskPreview.textContent = "";
   }
 
-  static createTasksDivs(currentProject) {
-    Project.getTasks(currentProject).forEach((task) => {
+  static createTasksDivs(project) {
+    let taskList = Project.getTasks.call(project);
+    taskList.forEach((task) => {
       const taskList = document.querySelector(".tasks");
       const div = document.createElement("div");
       div.textContent = task.title;

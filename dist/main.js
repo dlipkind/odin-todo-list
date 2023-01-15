@@ -1,5 +1,24 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/storage */ \"./src/modules/storage.js\");\n/* harmony import */ var _modules_project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/project */ \"./src/modules/project.js\");\n/* harmony import */ var _modules_todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/todo */ \"./src/modules/todo.js\");\n/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/task */ \"./src/modules/task.js\");\n/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_task__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _modules_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/dom */ \"./src/modules/dom.js\");\n\n\n\n\n\n\nconsole.log(\"index js here\");\n\n_modules_dom__WEBPACK_IMPORTED_MODULE_4__[\"default\"].projectFormSubmit();\n_modules_dom__WEBPACK_IMPORTED_MODULE_4__[\"default\"].taskFormSubmit();\n\n\n//# sourceURL=webpack://js-todo-list/./src/index.js?");
+
+/***/ }),
 
 /***/ "./src/modules/dom.js":
 /*!****************************!*\
@@ -8,135 +27,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ DOM)
-/* harmony export */ });
-/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/modules/storage.js");
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ "./src/modules/project.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo */ "./src/modules/todo.js");
-
-
-
-
-
-console.log("DOM here");
-
-class DOM {
-  static currentProject;
-
-  static selectProject(projectName) {
-    DOM.currentProject === projectName;
-  }
-
-  //EVENT LISTENERS
-
-  static projectFormSubmit() {
-    const projectForm = document.getElementById("form_pr");
-    projectForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      console.log("TEST!");
-      const projectName = document.getElementById("pr_title").value;
-      const newProject = new _project__WEBPACK_IMPORTED_MODULE_1__["default"](projectName);
-      console.log(newProject);
-      _todo__WEBPACK_IMPORTED_MODULE_3__["default"].addProject(newProject);
-      console.log(_todo__WEBPACK_IMPORTED_MODULE_3__["default"].projectsArray);
-      console.log(_todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects());
-      DOM.clearProjectPreview();
-      DOM.previewProjects();
-    });
-  }
-
-  static taskFormSubmit() {
-    const todoForm = document.getElementById("form_td");
-    todoForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const taskFormFields = e.target;
-      console.log(taskFormFields);
-      DOM.taskObjCompiler(
-        taskFormFields,
-        DOM.currentProject,
-        _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects()
-      );
-      DOM.previewTasks(DOM.currentProject);
-    });
-  }
-
-  static taskObjCompiler(taskFormFields, currentProject, projectsArray) {
-    const myFormData = new FormData(taskFormFields);
-    const formDataObj = {};
-
-    myFormData.forEach((value, key) => (formDataObj[key] = value));
-    formDataObj.project = currentProject;
-
-    console.log(formDataObj);
-
-    projectsArray.forEach((project) => {
-      project.name === currentProject ? project.tasks.push(formDataObj) : false;
-    });
-  }
-
-  //PROJECTS
-
-  static previewProjects() {
-    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects().forEach((project) => {
-      DOM.createProjectDivs(project.name);
-    });
-  }
-
-  static clearProjectPreview() {
-    const projectPreview = document.querySelector(".projects");
-    projectPreview.textContent = "";
-  }
-
-  static createProjectDivs(projectName) {
-    const projectPreview = document.querySelector(".projects");
-    const div = document.createElement("div");
-    div.textContent = projectName;
-    DOM.addListenersToProjects(div, projectName);
-    projectPreview.appendChild(div);
-  }
-
-  static addListenersToProjects(div, projectName) {
-    div.addEventListener("click", () => {
-      DOM.selectProject(projectName);
-      DOM.clearTaskPreview();
-      DOM.previewTasks(DOM.currentProject);
-    });
-  }
-
-  //TASKS
-
-  static previewTasks(currentProject) {
-    _todo__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects().forEach((project) => {
-      project.name === currentProject ? DOM.createTasksDivs : false;
-    });
-  }
-
-  static clearTaskPreview() {
-    const taskPreview = document.querySelector(".tasks");
-    taskPreview.textContent = "";
-  }
-
-  static createTasksDivs(currentProject) {
-    _project__WEBPACK_IMPORTED_MODULE_1__["default"].getTasks(currentProject).forEach((task) => {
-      const taskList = document.querySelector(".tasks");
-      const div = document.createElement("div");
-      div.textContent = task.title;
-      DOM.addListenersToTasks(div);
-      taskList.appendChild(div);
-    });
-  }
-
-  static addListenersToTasks(div) {
-    div.addEventListener("click", () => {
-      // expandTodo();
-    });
-  }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ DOM)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/modules/storage.js\");\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ \"./src/modules/project.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ \"./src/modules/task.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo */ \"./src/modules/todo.js\");\n\n\n\n\n\nconsole.log(\"DOM here\");\n\nclass DOM {\n  //EVENT LISTENERS\n\n  static projectFormSubmit() {\n    const projectForm = document.getElementById(\"form_pr\");\n    projectForm.addEventListener(\"submit\", (e) => {\n      e.preventDefault();\n      const projectName = document.getElementById(\"pr_title\").value;\n      const newProject = new _project__WEBPACK_IMPORTED_MODULE_1__[\"default\"](projectName);\n      _todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].addProject(newProject);\n      DOM.clearProjectPreview();\n      DOM.previewProjects();\n    });\n  }\n\n  static taskFormSubmit() {\n    const todoForm = document.getElementById(\"form_td\");\n    todoForm.addEventListener(\"submit\", (e) => {\n      e.preventDefault();\n      const taskFormFields = e.target;\n      DOM.taskObjCompiler(\n        taskFormFields,\n        _todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].currentProject,\n        _todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getProjects()\n      );\n      DOM.clearTaskPreview();\n      DOM.previewTasks(_todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].currentProject);\n    });\n  }\n\n  static taskObjCompiler(taskFormFields, currentProject, projectsArray) {\n    const myFormData = new FormData(taskFormFields);\n    const formDataObj = {};\n\n    myFormData.forEach((value, key) => (formDataObj[key] = value));\n    formDataObj.project = currentProject;\n\n    projectsArray.forEach((project) => {\n      project.name === currentProject ? project.tasks.push(formDataObj) : false;\n    });\n  }\n\n  //PROJECTS\n\n  static previewProjects() {\n    _todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getProjects().forEach((project) => {\n      DOM.createProjectDivs(project.name);\n    });\n  }\n\n  static clearProjectPreview() {\n    const projectPreview = document.querySelector(\".projects\");\n    projectPreview.textContent = \"\";\n  }\n\n  static createProjectDivs(projectName) {\n    const projectPreview = document.querySelector(\".projects\");\n    const div = document.createElement(\"div\");\n    div.textContent = projectName;\n    DOM.addListenersToProjects(div, projectName);\n    projectPreview.appendChild(div);\n  }\n\n  static addListenersToProjects(div, projectName) {\n    div.addEventListener(\"click\", () => {\n      _todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].setCurrentProject(projectName);\n      DOM.clearTaskPreview();\n      DOM.previewTasks(_todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].currentProject);\n    });\n  }\n\n  //TASKS\n\n  static previewTasks(currentProject) {\n    _todo__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getProjects().forEach((project) => {\n      project.name === currentProject ? DOM.createTasksDivs(project) : false;\n    });\n  }\n\n  static clearTaskPreview() {\n    const taskPreview = document.querySelector(\".tasks\");\n    taskPreview.textContent = \"\";\n  }\n\n  static createTasksDivs(project) {\n    let taskList = _project__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getTasks.call(project);\n    taskList.forEach((task) => {\n      const taskList = document.querySelector(\".tasks\");\n      const div = document.createElement(\"div\");\n      div.textContent = task.title;\n      DOM.addListenersToTasks(div);\n      taskList.appendChild(div);\n    });\n  }\n\n  static addListenersToTasks(div) {\n    div.addEventListener(\"click\", () => {\n      // expandTodo();\n    });\n  }\n}\n\n\n//# sourceURL=webpack://js-todo-list/./src/modules/dom.js?");
 
 /***/ }),
 
@@ -147,41 +38,7 @@ class DOM {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Project)
-/* harmony export */ });
-/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/modules/storage.js");
-/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo */ "./src/modules/todo.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ "./src/modules/dom.js");
-
-
-
-
-
-console.log("project here");
-
-class Project {
-  constructor(name) {
-    this.name = name;
-    this.tasks = [];
-  }
-
-  static getName() {
-    return this.name;
-  }
-
-  static setTasks(tasks) {
-    this.tasks = tasks;
-  }
-
-  static getTasks() {
-    return this.tasks;
-  }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/modules/storage.js\");\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo */ \"./src/modules/todo.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ \"./src/modules/task.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ \"./src/modules/dom.js\");\n\n\n\n\n\nconsole.log(\"project here\");\n\nclass Project {\n  constructor(name) {\n    this.name = name;\n    this.tasks = [];\n  }\n\n  static getName() {\n    return this.name;\n  }\n\n  static setTasks(tasks) {\n    this.tasks = tasks;\n  }\n\n  static getTasks() {\n    return this.tasks;\n  }\n}\n\n\n//# sourceURL=webpack://js-todo-list/./src/modules/project.js?");
 
 /***/ }),
 
@@ -192,56 +49,7 @@ class Project {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./project */ "./src/modules/project.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ "./src/modules/todo.js");
-/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ "./src/modules/dom.js");
-
-
-
-
-
-console.log("storage here");
-
-// export default class Storage {
-//   static getTodoList() {
-//     const todoList = Object.assign(
-//       new TodoList(),
-//       JSON.parse(localStorage.getItem("todoList"))
-//     );
-
-//     todoList.setProjects(
-//       todoList
-//         .getProjects()
-//         .map((project) => Object.assign(new Project(), project))
-//     );
-
-//     todoList
-//       .getProjects()
-//       .forEach((project) =>
-//         project.setTasks(
-//           project.getTasks().map((task) => Object.assign(new Task(), task))
-//         )
-//       );
-
-//     return todoList;
-//   }
-
-//   static addProject(project) {
-//     const todoList = Storage.getTodoList();
-//     todoList.addProject(project);
-//     Storage.saveTodoList(todoList);
-//   }
-
-//   static addTask(projectName, task) {
-//     const todoList = Storage.getTodoList();
-//     todoList.getProject(projectName).addTask(task);
-//     Storage.saveTodoList(todoList);
-//   }
-// }
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./project */ \"./src/modules/project.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task */ \"./src/modules/task.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ \"./src/modules/todo.js\");\n/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ \"./src/modules/dom.js\");\n\n\n\n\n\nconsole.log(\"storage here\");\n\n// export default class Storage {\n//   static getTodoList() {\n//     const todoList = Object.assign(\n//       new TodoList(),\n//       JSON.parse(localStorage.getItem(\"todoList\"))\n//     );\n\n//     todoList.setProjects(\n//       todoList\n//         .getProjects()\n//         .map((project) => Object.assign(new Project(), project))\n//     );\n\n//     todoList\n//       .getProjects()\n//       .forEach((project) =>\n//         project.setTasks(\n//           project.getTasks().map((task) => Object.assign(new Task(), task))\n//         )\n//       );\n\n//     return todoList;\n//   }\n\n//   static addProject(project) {\n//     const todoList = Storage.getTodoList();\n//     todoList.addProject(project);\n//     Storage.saveTodoList(todoList);\n//   }\n\n//   static addTask(projectName, task) {\n//     const todoList = Storage.getTodoList();\n//     todoList.getProject(projectName).addTask(task);\n//     Storage.saveTodoList(todoList);\n//   }\n// }\n\n\n//# sourceURL=webpack://js-todo-list/./src/modules/storage.js?");
 
 /***/ }),
 
@@ -251,7 +59,7 @@ console.log("storage here");
   \*****************************/
 /***/ (() => {
 
-
+eval("\n\n//# sourceURL=webpack://js-todo-list/./src/modules/task.js?");
 
 /***/ }),
 
@@ -262,42 +70,7 @@ console.log("storage here");
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Todo)
-/* harmony export */ });
-/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ "./src/modules/storage.js");
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ "./src/modules/project.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ "./src/modules/task.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ "./src/modules/dom.js");
-
-
-
-
-
-console.log("todo here");
-
-class Todo {
-  static projectsArray = [];
-
-  static getProjects() {
-    return Todo.projectsArray;
-  }
-
-  // static getProject(projectName) {
-  //   return this.projects.find((project) => project.getName() === projectName);
-  // }
-
-  static addProject(newProject) {
-    Todo.projectsArray.push(newProject);
-  }
-
-  static deleteProject(projectToDelete) {
-    Todo.projectsArray.splice(Todo.projectsArray.indexOf(projectToDelete), 1);
-  }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Todo)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/modules/storage.js\");\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ \"./src/modules/project.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ \"./src/modules/task.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_task__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom */ \"./src/modules/dom.js\");\n\n\n\n\n\nconsole.log(\"todo here\");\n\nclass Todo {\n  static projectsArray = [];\n\n  static currentProject;\n\n  static setCurrentProject(projectName) {\n    return (Todo.currentProject = projectName);\n  }\n\n  static getProjects() {\n    return Todo.projectsArray;\n  }\n\n  static getProject(projectName) {\n    return this.projectsArray.find(\n      (project) => project.getName() === projectName\n    );\n  }\n\n  static addProject(newProject) {\n    Todo.projectsArray.push(newProject);\n  }\n\n  static deleteProject(projectToDelete) {\n    Todo.projectsArray.splice(Todo.projectsArray.indexOf(projectToDelete), 1);\n  }\n}\n\n\n//# sourceURL=webpack://js-todo-list/./src/modules/todo.js?");
 
 /***/ })
 
@@ -369,35 +142,11 @@ class Todo {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/storage */ "./src/modules/storage.js");
-/* harmony import */ var _modules_project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/project */ "./src/modules/project.js");
-/* harmony import */ var _modules_todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/todo */ "./src/modules/todo.js");
-/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/task */ "./src/modules/task.js");
-/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_task__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _modules_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/dom */ "./src/modules/dom.js");
-
-
-
-
-
-
-console.log("index js here");
-
-console.log(typeof new _modules_project__WEBPACK_IMPORTED_MODULE_1__["default"]("Name"));
-
-_modules_dom__WEBPACK_IMPORTED_MODULE_4__["default"].projectFormSubmit();
-_modules_dom__WEBPACK_IMPORTED_MODULE_4__["default"].taskFormSubmit();
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map
